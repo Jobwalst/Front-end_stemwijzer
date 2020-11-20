@@ -1,0 +1,66 @@
+*{
+    margin: 0 auto;
+    padding: 0 auto;
+}
+
+body{
+    background-image: url("images/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.container{
+    width: 1000px;
+    background-color: white;
+}
+
+header{
+    margin-left: 50px;
+}
+
+header img{
+    margin-left: -50px;
+}
+
+#underImg{
+    position: relative;
+    bottom: 25px;
+}
+
+.underUnderImg{
+    position: relative;
+    bottom: 20px;
+}
+
+header button{
+    float: right;
+    position: relative;
+    right: 70px;
+}
+
+.headLink1 i{
+    font-size: 50px;
+    display: block;
+    position: absolute;
+}
+
+.headLink1{
+    position: relative;
+    left: 70px;
+    text-decoration: none;
+}
+
+.headLink2 i{
+    font-size: 50px;
+    display: block;
+    position: absolute;
+    top: 30px;
+}
+
+.headLink2{
+    position: relative;
+    left: 70px;
+    text-decoration: none;
+}
