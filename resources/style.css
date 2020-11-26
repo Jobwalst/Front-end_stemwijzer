@@ -12,7 +12,8 @@ body{
 }
 
 .container{
-    width: 1000px;
+    width: 1200px;
+    margin-top: 28px;
     background-color: white;
 }
 
@@ -63,4 +64,82 @@ header button{
     position: relative;
     left: 70px;
     text-decoration: none;
+}
+
+.sec1{
+    border-top: dotted grey;
+    margin-top: 35px;
+}
+
+.sec1 h3{
+    margin-top: 30px;
+}
+
+.middle{
+    margin-left: 50px;
+}
+
+.middle h3 span{
+    color: grey;
+}
+
+.middle a{
+    text-decoration: none;
+}
+
+.middle a:hover{
+    text-decoration: underline;
+}
+
+.middle p{
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.bottom{
+    margin-left: 75px;
+    margin-top: 30px;  
+}
+
+.eenVandaag{
+    width: 175px;
+}
+
+.partyTitle{
+    margin: 30px auto 20px auto;
+}
+
+.container .parties{
+     justify-content: flex-start;
+     margin-bottom: 30px;
+}
+
+.container .parties{
+    display: flex;
+    flex-wrap: wrap;
+    width: 800px;
+    margin-left: -3px;
+}
+
+.container .parties .party{
+    overflow: hidden;
+    width: 50px;
+    height: 50px;
+    margin: 0 14px 18px 0;
+    background: white;
+    border-radius: 50px;
+    transition: transform .2s ease;
+}
+
+.container .parties .party:hover{
+    transform: scale(2);
+}
+
+.container .parties .party .partyLogo{
+    width: 80%;
+    height: 80%;
+    margin: 10% 0 0 10%;
+    background-position: center center;
+    background-size: 90%;
+    background-repeat: no-repeat;
 }
