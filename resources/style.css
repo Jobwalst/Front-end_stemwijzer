@@ -12,7 +12,7 @@ body{
 }
 
 .container{
-    width: 1200px;
+    width: 85%;
     margin-top: 28px;
     background-color: white;
 }
@@ -111,13 +111,13 @@ header button{
 
 .container .parties{
      justify-content: flex-start;
-     margin-bottom: 30px;
+     margin-bottom: 5px;
 }
 
 .container .parties{
     display: flex;
     flex-wrap: wrap;
-    width: 800px;
+    width: 76%;
     margin-left: -3px;
 }
 
@@ -142,4 +142,100 @@ header button{
     background-position: center center;
     background-size: 90%;
     background-repeat: no-repeat;
+}
+
+.nonPartyTitle{
+    margin-bottom: 20px;
+}
+
+.container .nonParties{
+    justify-content: flex-start;
+    margin-bottom: 5px;
+}
+
+.container .nonParties{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container .nonParties .party{
+    overflow: hidden;
+    width: 50px;
+    height: 50px;
+    margin: 0 14px 18px 0;
+    background: white;
+    border-radius: 50px;
+    transition: transform .2s ease;
+}
+
+.container .nonParties .party:hover{
+    transform: scale(2);
+}
+
+.container .nonParties .party .partyLogo{
+    width: 80%;
+    height: 80%;
+    margin: 10% 0 0 10%;
+    background-position: center center;
+    background-size: 90%;
+    background-repeat: no-repeat;
+}
+
+.foot{
+    position: relative;
+    left: -17px;
+}
+
+.footerLogo{
+    width: 140px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+footer{
+    width: 85%;
+}
+
+.sec2{
+    margin-left: 150px;
+}
+
+.sec2 .questionTitle{
+    margin-bottom: 30px;
+}
+
+.sec2 .questionText{
+    font-size: 28px;
+    width: 75%;
+    position: relative;
+    left: -140px;
+}
+
+.buttons{
+    padding-top: 70px;
+    padding-bottom: 100px;
+}
+
+.button1 ,.button2{
+    margin-right: 10px;
+}
+
+.button1 ,.button2 ,.button3{
+    width: 220px;
+}
+
+.backButton{
+    position: relative;
+    right: 135px;
+    top: 10px;
+}
+
+.buttons ,.skip{
+    display: inline-block;
+}
+
+.skip{
+    padding-left: 50px;
+    font-size: 20px;
+    cursor: pointer;
 }
