@@ -105,8 +105,6 @@ function backQuestion(){
     button1.setAttribute("onclick", "backAgree();");
     button2.setAttribute("onclick", "backNone();");
     button3.setAttribute("onclick", "backDisagree();");
-    
-   
 }
 
 function nextQuestion(){
@@ -124,20 +122,19 @@ function backAgree(){
     answers.splice(question, 1, 'eens');
     question++
     console.log(answers);
-    showQuestion();
+    backQuestion();
 }
 
 function backNone(){
     answers.splice(question, 1, 'geen van beide');
     question++
     console.log(answers);
-    showQuestion();
+    backQuestion();
 }
 
 function backDisagree(){
     answers.splice(question, 1, 'oneens');
-    disagree();
     question++
     console.log(answers);
-    showQuestion();
+    backQuestion();
 }
