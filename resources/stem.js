@@ -1,12 +1,12 @@
-var back = document.getElementsByClassName("backButton");
+var back = document.getElementsByClassName("backButton")[0];
 var title = document.getElementsByClassName("questionTitle")[0];
 var text = document.getElementsByClassName("questionText")[0];
 
-var button1 = document.getElementById("button1");
-var button2 = document.getElementById("button2");
-var button3 = document.getElementById("button3");
+var button1 = document.getElementsByClassName("button1")[0];
+var button2 = document.getElementsByClassName("button2")[0];
+var button3 = document.getElementsByClassName("button3")[0];
 
-var skip = document.getElementsByClassName("skip");
+var skip = document.getElementsByClassName("skip")[0];
 
 var question = 0;
 
@@ -20,34 +20,124 @@ console.log(questDesc.length);
 
 var answers = [];//Answers can only be: "EENS", "GEEN VAN BEIDE" or "ONEENS".
 
+button1.setAttribute("onclick", "agree();");
+button2.setAttribute("onclick", "none();");
+button3.setAttribute("onclick", "disagree();");
+
 function showQuestion(){//This function shows a specific question based on the number in the variable: "question".
     console.log(questTitles[question]);
     console.log(questDesc[question]);
     title.innerHTML = questTitles[question];
     text.innerHTML = questDesc[question];
-    button1.setAttribute("onclick", "agree();");
-    button2.setAttribute("onclick", "none();");
-    button3.setAttribute("onclick", "disagree();");
+    
+    skip.setAttribute("onclick", "skipQuestion();");
+    back.setAttribute("onclick", "backButton();");
 }
 showQuestion();
 
 function agree(){
     answers.push('eens');
     question++;
-    showQuestion();
+    nextQuestion();
     console.log(answers);
 }
 
 function none(){
     answers.push('geen van beide');
     question++;
-    showQuestion();
+    nextQuestion();
     console.log(answers);
 }
 
 function disagree(){
     answers.push('oneens');
     question++;
-    showQuestion();
+    nextQuestion();
     console.log(answers);
+}
+
+function skipQuestion(){
+    question++
+    backQuestion();
+    console.log(answers);
+}
+
+function backButton(){
+    question--;
+    backQuestion();   
+}
+
+function backQuestion(){
+    var backOff = answers[question];
+    console.log(backOff);
+    //console.log(answers);
+    if(backOff == 'eens'){
+        button1.classList.remove('w3-black');
+        button1.classList.add('w3-blue');
+        button2.classList.remove('w3-blue');
+        button2.classList.add('w3-black');
+        button3.classList.remove('w3-blue');
+        button3.classList.add('w3-black');
+    }
+    else if(backOff == 'geen van beide'){
+        button2.classList.remove('w3-black');
+        button2.classList.add('w3-blue');
+        button1.classList.remove('w3-blue');
+        button1.classList.add('w3-black');
+        button3.classList.remove('w3-blue');
+        button3.classList.add('w3-black');
+    }
+    else if(backOff == 'oneens'){
+        button3.classList.remove('w3-black');
+        button3.classList.add('w3-blue');
+        button1.classList.remove('w3-blue');
+        button1.classList.add('w3-black');
+        button2.classList.remove('w3-blue');
+        button2.classList.add('w3-black');
+    }
+    else{
+        nextQuestion();
+    }
+     
+    title.innerHTML = questTitles[question];
+    text.innerHTML = questDesc[question];
+
+    button1.setAttribute("onclick", "backAgree();");
+    button2.setAttribute("onclick", "backNone();");
+    button3.setAttribute("onclick", "backDisagree();");
+    
+   
+}
+
+function nextQuestion(){
+    button1.classList.add('w3-black');
+    button1.classList.remove('w3-blue');
+    button2.classList.add('w3-black');
+    button2.classList.remove('w3-blue');
+    button3.classList.add('w3-black');
+    button3.classList.remove('w3-blue');
+    
+    showQuestion();
+}
+
+function backAgree(){
+    answers.splice(question, 1, 'eens');
+    question++
+    console.log(answers);
+    showQuestion();
+}
+
+function backNone(){
+    answers.splice(question, 1, 'geen van beide');
+    question++
+    console.log(answers);
+    showQuestion();
+}
+
+function backDisagree(){
+    answers.splice(question, 1, 'oneens');
+    disagree();
+    question++
+    console.log(answers);
+    showQuestion();
 }
