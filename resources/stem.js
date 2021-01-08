@@ -11,15 +11,115 @@ var skip = document.getElementsByClassName("skip")[0];
 
 var question = 0;//this number is tied to the answers array. The number starts at 0 and the array on position 0. This variable is also tied to "questTitles" and "questDesc".
 
-const questTitles = ['1. Bindend referendum', '2. Maatschappelijke dienstplicht', '3. Anoniem solliciteren', '4. Groepsbelediging', '5. Teelt en verkoop wiet', '6. Vervroegde vrijlating', '7. Vennootschapsbelasting', '8. Belasting hoogste inkomens', '9. Tijdelijke arbeidscontracten', '10. AOW-leeftijd 65', '11. Verzekering zzp`ers', '12. Leenstelsel studenten', '13. Geld cultuur', '14. Islamitische immigranten', '15. Kinderpardon', '16. Onderdak illegalen', '17. Hypotheekrente', '18. Verhuurdersheffing', '19. Schiphol', '20. Kilometerheffing', '21. Nieuwe wegen', '22. Kolencentrales', '23. BTW-tarief vlees', '24. Voltooit leven', '25. Afschaffing eigen risico', '26. Landelijk zorgfonds', '27. Defensie uitgaven', '28. Europees leger', '29. Ontwikkelingshulp', '30. EU-lidmaatschap'];//The title of each question is saved in this array.
 
-console.log(questTitles.length);
+var subjects = [{
+    "title": "Bindend referendum",
+    "statement": "Er moet een bindend referendum komen, waarmee burgers door het parlement aangenomen wetten kunnen tegenhouden.",
+    "parties": [
+      {
+        "name": "PVV",
+        "position": "contra",
+        "opinion": "Geen toelichting gegeven"
+      },
+      {
+        "name": "SP",
+        "position": "pro",
+        "opinion": "Directe inspraak en zeggenschap van mensen maakt onze democratie sterker en de besluiten beter. In plaats van een raadgevend referendum willen we zo snel mogelijk een correctief referendum, zodat de bevolking ook tussen de verkiezingen door de gekozen vertegenwoordigers kan corrigeren, zowel bij lokale, nationale als Europese onderwerpen."
+      },
+      {
+        "name": "D66",
+        "position": "pro",
+        "opinion": "D66 wil de democratische controle moderniseren. Daarom wil D66 kiezers een noodrem geven met de mogelijkheid om via een correctief bindend referendum wetsvoorstellen tegen te houden, nadat het parlement deze heeft aangenomen. Dit correctief bindend referendum omvat geen internationale verdragen."
+      },
+      {
+        "name": "CU",
+        "position": "pro",
+        "opinion": "Wij willen experimenteren met nieuwe vormen van directe democratie. Wij werken daarom aan alternatieve modellen om burgers te betrekken en hechten vooral aan het uitwisselen van argumenten en samen zoeken naar oplossingen. Tot dan steunen wij het referendum om burgers meer invloed te geven."
+      }
+    ]
+  },
+  {
+    "title": "Maatschappelijke dienstplicht",
+    "statement": "Er moet een maatschappelijke dienstplicht voor jongeren komen. Zij kunnen dan dienen in het leger, bij de politie of in de zorg.",
+    "parties": [
+      {
+        "name": "PVV",
+        "position": "pro",
+        "opinion": "Geen toelichting gegeven"
+      },
+      {
+        "name": "SP",
+        "position": "contra",
+        "opinion": "De SP is voorstander van een maatschappelijke stage voor jongeren binnen het onderwijs om kennis te maken met de maatschappij, bijvoorbeeld in zorg of onderwijs. Een maatschappelijke dienstplicht voor langere tijd buiten het onderwijs gaat echter veel te ver, zal veel kosten en weinig opleveren. Belangrijke maatschappelijke taken moeten worden verricht door mensen die daar gemotiveerd en goed opgeleid voor zijn,"
+      },
+      {
+        "name": "D66",
+        "position": "contra",
+        "opinion": "Natuurlijk is het mooi als jongeren zich willen inzetten voor de maatschappij, maar dat is het juist als zij er zÃ©lf voor kiezen. Daarom wil D66 dit niet verplicht stellen. Scholen kunnen kiezen voor het aanbieden van een maatschappelijke stage, maar dat moet niet door de overheid worden opgelegd."
+      },
+      {
+        "name": "CU",
+        "position": "pro",
+        "opinion": "Mensen nemen op allerlei manieren deel aan de samenleving: door te werken, te leren, vrijwilligerswerk te doen, buren of familie te helpen. Een maatschappelijke dienstplicht doet geen recht aan de verschillende manieren waarop mensen participeren en beperkt de individuele vrijheid te veel."
+      }
+    ]
+  },
+  {
+    "title": "Anoniem solliciteren",
+    "statement": "Om discriminatie op basis van de naam te voorkomen, moet anoniem solliciteren bij de overheid en bij openbare instellingen de regel worden.",
+    "parties": [
+      {
+        "name": "D66",
+        "position": "pro",
+        "opinion": "Nederlanders met een niet-westerse achtergrond zijn drie keer vaker werkloos dan Nederlanders met een westerse achtergrond. D66 wil dit verschil terugdringen. EÃ©n van de maatregelen die D66 wil nemen is het opzetten van experimenten met neutrale sollicitatie- en promotieprocedures."
+      },
+      {
+        "name": "CU",
+        "position": "pro",
+        "opinion": "Waar het gaat om vacatures van de overheid wordt anoniem solliciteren de norm. GroenLinks wil dat de overheid een goede afspiegeling vormt van de samenleving, zeker bij publieke topfuncties. "
+      },
+      {
+        "name": "PVV",
+        "position": "contra",
+        "opinion": "Geen toelichting gegeven"
+      },
+      {
+        "name": "SP",
+        "position": "contra",
+        "opinion": "Discriminatie  moet fel bestreden worden in alle delen van de maatschappij. Experimenten met anoniem solliciteren uitbreiden is daarom een goed idee. Dit algeheel doorvoeren gaat nu echter een stap te ver. Bovendien zit anoniem solliciteren ook een actief diversiteitsbeleid juist in de weg."
+      }
+    ]
+  },
+  {
+    "title": "Groepsbelediging",
+    "statement": "Belediging van groepen op grond van ras, godsdienst of geaardheid moet niet langer strafbaar zijn.",
+    "parties": [
+      {
+        "name": "PVV",
+        "position": "pro",
+        "opinion": "Geen toelichting gegeven"
+      },
+      {
+        "name": "SP",
+        "position": "contra",
+        "opinion": "De strafbaarheid op belediging van groepen blijkt in de praktijk een nuttig middel om bijvoorbeeld antisemitisme of religieuze haatoproepen tegen homoseksuelen tegen te gaan."
+      },
+      {
+        "name": "D66",
+        "position": "contra",
+        "opinion": "D66 is voor vrije meningsuiting maar vindt dat het opzettelijk beledigen, discrimineren en haat zaaien tegen mensen vanwege het behoren tot een bepaalde bevolkingsgroep, niet past in onze samenleving."
+      },
+      {
+        "name": "CU",
+        "position": "contra",
+        "opinion": "Onze samenleving is de afgelopen vijftien jaar verruwd. Respectloos gedrag lijkt normaal te zijn geworden. GroenLinks stelt een harde grens: we pakken racisme en discriminatie keihard aan, zeker als het gekoppeld wordt aan geweld of het oproepen tot geweld, intimidatie en bedreigingen."
+      }
+    ]
+  }
+];
+console.log(subjects.length);
 
-const questDesc = ['Er moet een bindend referendum komen, waarmee burgers door het parlement aangenomen wetten kunnen tegenhouden.', 'Er moet een maatschappelijke dienstplicht voor jongeren komen. Zij kunnen dan dienen in het leger, bij de politie of in de zorg.', 'Om discriminatie op basis van de naam te voorkomen, moet anoniem solliciteren bij de overheid en bij openbare instellingen de regel worden.', 'Belediging van groepen op grond van ras, godsdienst of geaardheid moet niet langer strafbaar zijn.', 'De teelt en verkoop van wiet moet legaal worden.', 'De vervroegde vrijlating onder voorwaarden van gevangenen moet stoppen. Zij moeten hun straf helemaal uitzitten.', 'De belasting over de winst van ondernemingen (vennootschapsbelasting) moet omlaag.', 'De hoogste inkomensgroepen moeten meer belasting gaan betalen.', 'De periode waarbinnen je meerdere tijdelijke arbeidscontracten na elkaar kunt afsluiten, moet langer worden dan twee jaar.', 'De AOW-leeftijd moet weer 65 jaar worden.', 'Er moet een verplichte verzekering tegen arbeidsongeschiktheid en ziekte komen voor alle zelfstandigen zonder personeel (zzp`ers).', 'Het leenstelsel voor studenten moet worden afgeschaft. De basisbeurs moet weer terugkomen.', 'Er moet meer geld naar kunst en cultuur.', 'Nederland moet de grenzen sluiten voor islamitische immigranten.', 'In Nederland opgegroeide kinderen van asielzoekers moeten hier kunnen blijven (kinderpardon).', 'De regering moet gemeenten verbieden illegale vreemdelingen onderdak te geven.', 'De regeling voor de aftrek van de hypotheekrente moet niet verder worden aangetast.', 'Woningcorporaties moeten meer goedkope huurwoningen bouwen. Daarom moet de belasting die zij betalen over huurwoningen (verhuurdersheffing) worden afgeschaft.', 'Luchthaven Schiphol moet kunnen uitbreiden.', 'De regering moet niet het bezit van de auto, maar het aantal gereden kilometers belasten.', 'Er moet meer geld naar de aanleg van nieuwe wegen.', 'Alle kolencentrales mogen voorlopig open blijven.', 'Voor vlees moet het hoge btw-tarief van 21 procent gaan gelden.', 'Ouderen die vinden dat hun leven voltooid is moeten hulp kunnen krijgen om een einde aan hun leven te maken.', 'Het eigen risico in de zorg moet worden afgeschaft, ook als dat betekent dat de premies omhoog gaan.', 'Er moet een landelijk zorgfonds komen, zodat het stelsel van particuliere zorgverzekeraars kan verdwijnen.', 'De uitgaven voor defensie moeten de komende jaren fors omhoog naar 2 procent van het nationale inkomen (de NAVO-norm).', 'Er moet een Europees leger komen.', 'Nederland moet meer geld uitgeven voor de ontwikkeling van arme landen.', 'Nederland moet uit de Europese Unie (EU) stappen.'];//The descriptions of the questions are all saved in this array called: 'questDesc'.
-
-console.log(questDesc.length);
-
-var answers = [];//Answers can only be: "EENS", "GEEN VAN BEIDE" or "ONEENS".
+var answers = [];//Answers can only be: "PRO", "GEEN VAN BEIDE" or "CONTRA".
 
 button1.setAttribute("onclick", "agree();");
 button2.setAttribute("onclick", "none();");
@@ -36,22 +136,24 @@ function showQuestion(){//This function shows a specific question based on the n
         console.log(question);
     }
 
-    console.log(questTitles[question]);
-    console.log(questDesc[question]);
-    title.innerHTML = questTitles[question];
-    text.innerHTML = questDesc[question];
+    //console.log(question);
     
     skip.setAttribute("onclick", "skipQuestion();");
     back.setAttribute("onclick", "backButton();");
 
-    if(question == questTitles.length){
+    if(question == subjects.length){
         end();
     }//If the number in the var "question" is equal to the length of the array "questTitles". The function "end();" will run.
+    else{
+        console.log(subjects[question]);
+        title.innerHTML = question + 1 + '. ' + subjects[question].title;
+        text.innerHTML = subjects[question].statement;
+    }
 }
 showQuestion();
 
 function agree(){
-    answers.push('eens');
+    answers.push('pro');
     question++;
     nextQuestion();
     console.log(answers);
@@ -65,7 +167,7 @@ function none(){
 }
 
 function disagree(){
-    answers.push('oneens');
+    answers.push('contra');
     question++;
     nextQuestion();
     console.log(answers);
@@ -123,8 +225,8 @@ function backQuestion(){//This function cycles back through the answered questio
         nextQuestion();
     }
      
-    title.innerHTML = questTitles[question];
-    text.innerHTML = questDesc[question];
+    title.innerHTML = question + 1 + '. ' + subjects[question].title;
+    text.innerHTML = subjects[question].statement;
 
     button1.setAttribute("onclick", "backAgree();");
     button2.setAttribute("onclick", "backNone();");
@@ -145,7 +247,7 @@ function nextQuestion(){
 }
 
 function backAgree(){
-    answers.splice(question, 1, 'eens');
+    answers.splice(question, 1, 'pro');
     question++;
     console.log(answers);
     backQuestion();
@@ -159,7 +261,7 @@ function backNone(){
 }
 
 function backDisagree(){
-    answers.splice(question, 1, 'oneens');
+    answers.splice(question, 1, 'contra');
     question++;
     console.log(answers);
     backQuestion();
@@ -174,27 +276,5 @@ function end(){//This function ends the question cycle, so you can see your resu
     skip.style.display = 'none';
     button3.innerHTML = 'Verder';
     title.innerHTML = 'Uw mening komt het best overeen met:'
-
-    var agreeCount = 0;
-    var noneCount = 0;
-    var disagreeCount = 0;
-
-    for (let i = 0; i < answers.length; i++) {
-        //console.log(answers[i]);
-        if(answers[i] === 'eens'){
-            agreeCount++;
-            console.log('eens = ' + agreeCount);
-        }
-        else if(answers[i] === 'geen van beide'){
-            noneCount++;
-            console.log('geen van beide = ' + noneCount);
-        }
-        else if(answers[i] === 'oneens'){
-            disagreeCount++;
-            console.log('oneens = ' + disagreeCount);
-        }
-    }
-    console.log(agreeCount);
-    console.log(noneCount);
-    console.log(disagreeCount);
+    text.style.display = 'none';
 }
