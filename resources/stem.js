@@ -9,8 +9,34 @@ var button3 = document.getElementsByClassName("button3")[0];
 
 var skip = document.getElementsByClassName("skip")[0];
 
-var question = 0;//this number is tied to the answers array. The number starts at 0 and the array on position 0. This variable is also tied to "questTitles" and "questDesc".
+var question = 0;//this number is tied to the answers array. The number starts at 0 and the array on position 0.
 
+var parties = [
+  {
+     name: "PVV",
+     secular: true,
+     size: 20,
+     long: "Partij voor de Vrijheid"
+   },
+   {
+     name: "D66",
+     secular: true,
+     size: 19,
+     long: "Democratie 66"
+   },
+   {
+     name: "CU",
+     secular: false,
+     size: 6,
+     long: 'Christen Unie'
+   },
+   {
+     name: "SP",
+     secular: true,
+     size: 14,
+     long: "Socialistische Partij"
+   }
+ ];
 
 var subjects = [{
     "title": "Bindend referendum",
@@ -120,6 +146,17 @@ var subjects = [{
 console.log(subjects.length);
 
 var answers = [];//Answers can only be: "PRO", "GEEN VAN BEIDE" or "CONTRA".
+
+var result = [];//All the parties and the number of correct answers are saved here for calculation of the best party.
+
+for(let i = 0; i < parties.length; i++){
+  result[i] = {
+    name: parties[i]['name'],
+    secular: parties[i]['secular'],
+    size: parties[i]['size'],
+    amount: 0
+  }
+}
 
 button1.setAttribute("onclick", "agree();");
 button2.setAttribute("onclick", "none();");
@@ -269,12 +306,96 @@ function backDisagree(){
 //The splice method can delete and/or add to an array on a specific position, and will return the deleted items.
 
 function end(){//This function ends the question cycle, so you can see your result.
-    button1.style.display = 'none';
-    button2.style.display = 'none';
-    buttons.style.float = 'right';
     buttons.style.paddingRight = '20px';
     skip.style.display = 'none';
-    button3.innerHTML = 'Verder';
-    title.innerHTML = 'Uw mening komt het best overeen met:'
+    button1.innerHTML = 'Alle partijen';
+    button2.innerHTML = 'Alleen seculier';
+    button3.innerHTML = 'Alleen grote';
+    title.innerHTML = 'Welke partijen wilt u weergeven?';
     text.style.display = 'none';
+    back.disabled = true;
+    
+    console.log(result);
+
+    button1.setAttribute('onclick', 'allParties()');
+    button2.setAttribute('onclick', 'onlySecular()');
+    button3.setAttribute('onclick', 'onlyBig()');
+}
+
+function primary(){
+  for(let i = 0; i < result.length; i++){
+    if(result[i].secular == true){
+      result.splice(i, 1);
+    }
+    else{
+      //primary();
+    }
+  }
+  afterEnd();
+}
+
+var sparseSelection = [];
+
+function makeClean(){//this function is meant for the 'sparseSelection' array. It cleans the array, and saved in a new array called 'cleanSelection'.
+  cleanSelection = sparseSelection.filter(function(){return true});
+}
+
+function allParties(){
+  for(let i = 0; i < result.length; i++){
+    sparseSelection[i] = { name: result[i]['name'], amount: result[i]['amount'] }
+    makeClean();
+    console.log(cleanSelection);
+  }
+  afterEnd();
+}
+
+function onlySecular(){
+  for(let i = 0; i < result.length; i++){
+    if(result[i].secular == true){
+      sparseSelection[i] = { name: result[i]['name'], amount: result[i]['amount'] }
+      makeClean();
+      console.log(cleanSelection);
+    }
+  }
+  afterEnd();
+}
+
+function onlyBig(){//This function only filters out the biggest parties (according to the size in the subjects array). And makes the original 'sparseSelection' array clean, so that ther are no empty spaces.
+  for(let i = 0; i < result.length; i++){
+    if(result[i].size > 10){
+      sparseSelection[i] = { name: result[i]['name'], amount: result[i]['amount'] }
+      makeClean();
+      console.log(cleanSelection);
+    }
+  }
+  afterEnd();
+}
+
+function afterEnd(){//This function calculates the right party, based on your choices.
+    for(let i = 0; i < subjects.length; i++){
+      for(let q = 0; q < subjects[i]['parties'].length; q++){
+        if(subjects[i]['parties'][q]['position'] == answers[i]){
+          for(let r = 0; r < cleanSelection.length; r++){
+            if(cleanSelection[r]['name'] == subjects[i]['parties'][q]['name']){
+              cleanSelection[r]['amount']++
+            }
+          }
+        }
+      }
+    }
+    console.log(result);
+    text.style.display = 'block';
+    title.innerHTML = 'De partij die het beste bij u past is:'
+
+    cleanSelection.sort(function(a, b){return b.amount - a.amount}); //the result array is sorted (descending) from highest amount to lowest amount, the function above is a compare function. 
+    console.log(cleanSelection[0].name);
+    //text.innerHTML = result[0].name;
+
+    for(let i = 0; i < parties.length; i++){
+      if(cleanSelection[0].name == parties[i].name){
+        console.log(parties[i].long);
+        text.innerHTML = parties[i].long;
+      }
+    }
+    console.log(cleanSelection);
 }
