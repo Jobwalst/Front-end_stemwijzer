@@ -241,3 +241,20 @@ footer{
     font-size: 20px;
     cursor: pointer;
 }
+
+#checkBoxDiv, input{
+    overflow: auto;
+}
+
+#checkBoxDiv{
+    display: inline-block;
+    height: 175px;
+    border: solid black 5px;
+    position: relative;
+    top: 150px;
+    left: 240px;
+}
+
+#checkBoxDiv input{
+    margin-top: 10px;
+}
